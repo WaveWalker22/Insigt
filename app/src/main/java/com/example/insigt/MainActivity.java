@@ -2,6 +2,7 @@ package com.example.insigt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -80,25 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        play_pause_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // Кнопка в режиме Pause
-                    play_pause_button.setBackgroundResource(R.drawable.stop_icon);
 
-                    // выполнить действия при нажатии на кнопку Pause
-                    long elapsedRealtime = SystemClock.elapsedRealtime();
-//        // Set the time that the count-up timer is in reference to.
-                    chronometer.setBase(elapsedRealtime);
-                    chronometer.start();
-                } else {
-                    // Кнопка в режиме Play
-                    play_pause_button.setBackgroundResource(R.drawable.play_icon);
-                    // выполнить действия при нажатии на кнопку Play
-                    chronometer.stop();
-                }
-            }
-        });
 
 }
 
