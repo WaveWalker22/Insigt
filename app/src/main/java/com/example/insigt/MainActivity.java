@@ -21,39 +21,70 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Chronometer chronometer;
-    private ToggleButton toggleButton;
+    private ToggleButton play_pause_button;
+    private TextView tv;
 
+    //@SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tv = (TextView)findViewById(R.id.textView_jobName) ;
+        //Toast.makeText(MainActivity.this, "Selected :" + tv.getText().toString() + " ", Toast.LENGTH_LONG).show();
+        chronometer = (Chronometer)findViewById(R.id.chronometer);
+        play_pause_button = findViewById(R.id.play_pause_button);
 
         List<Job> image_details = getListData();
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, image_details));
 
-        // When the user clicks on the ListItem
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Job job = (Job) listView.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, "Selected :" + " " + job, Toast.LENGTH_LONG).show();
-            }
-        });
+//        play_pause_button_item.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    // Кнопка в режиме Pause
+//                    play_pause_button_item.setBackgroundResource(R.drawable.stop_icon);
+//
+//                    // выполнить действия при нажатии на кнопку Pause
+//                    long elapsedRealtime = SystemClock.elapsedRealtime();
+////        // Set the time that the count-up timer is in reference to.
+//                    chronometer.setBase(elapsedRealtime);
+//                    chronometer.start();
+//                } else {
+//                    // Кнопка в режиме Play
+//                    play_pause_button_item.setBackgroundResource(R.drawable.play_icon);
+//                    // выполнить действия при нажатии на кнопку Play
+//                    chronometer.stop();
+//                }
+//            }
+//        });
+
+        // When the user clicks on the ListItem
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+//            @Override
+//            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+
+//                Toast.makeText(MainActivity.this, "Selected :" + id + " ", Toast.LENGTH_LONG).show();
+//                Job job = (Job) listView.getItemAtPosition(position);
+                //Toast.makeText(MainActivity.this, "Selected :" + " " + job, Toast.LENGTH_LONG).show();
+//            }
+//
+//        });
 
 
         // Нижняя панель
-        this.chronometer = (Chronometer)findViewById(R.id.chronometer);
 
-        toggleButton = findViewById(R.id.play_pause_button);
 
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+        play_pause_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // Кнопка в режиме Pause
-                    toggleButton.setBackgroundResource(R.drawable.stop_icon);
+                    play_pause_button.setBackgroundResource(R.drawable.stop_icon);
 
                     // выполнить действия при нажатии на кнопку Pause
                     long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -62,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     chronometer.start();
                 } else {
                     // Кнопка в режиме Play
-                    toggleButton.setBackgroundResource(R.drawable.play_icon);
+                    play_pause_button.setBackgroundResource(R.drawable.play_icon);
                     // выполнить действия при нажатии на кнопку Play
                     chronometer.stop();
                 }
@@ -70,19 +101,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 }
-
-    // @totalMilliseconds: milliseconds since system boot, including time spent in sleep.
-//    @SuppressLint("SetTextI18n")
-//    private void showInfo(long totalMilliseconds)  {
-//        // Seconds
-//        long totalSecs = totalMilliseconds / 1000;
-//        // Show Info
-//        long hours = totalSecs / 3600;
-//        long minutes = (totalSecs % 3600) / 60;
-//        long seconds = totalSecs % 60;
-//
-//        //this.textViewInfo.setText("Base Time: " + totalSecs +" ~ " + hours + " hours " + minutes+" minutes " + seconds + " seconds");
-//    }
 
     private  List<Job> getListData() {
         List<Job> list = new ArrayList<Job>();

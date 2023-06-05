@@ -28,6 +28,12 @@
     <ToggleButton
 
         android:id="@+id/play_pause_button_item"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_marginTop="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:focusable="false"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/play_icon"
+        />
 </GridLayout>
